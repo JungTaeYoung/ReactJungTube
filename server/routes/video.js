@@ -5,6 +5,8 @@ const router = express.Router();
 const { auth } = require("../middleware/auth");
 const multer = require("multer");
 var ffmpeg = require("fluent-ffmpeg");
+const { Video } = require("../models/Video");
+const { response } = require("express");
 //=================================
 //             Video
 //=================================
@@ -28,7 +30,7 @@ let storage = multer.diskStorage({
 const uplaod = multer({ storage: storage }).single("file")
 
 router.post("/uploadfiles", (req, res) => {
-  // 비디오에 저장
+  // 비디오 저장
   uplaod(req, res, err=>{
       if(err) {
           return res.json({ success: false, err })
@@ -36,6 +38,39 @@ router.post("/uploadfiles", (req, res) => {
         return res.json({ success: true, url: req.file.path, fileName: req.file.fileName })
   })
 });
+
+router.post("/videoUpload", (req, res) => {
+  // 비디오 정보 저장
+    const video = new Video(req.body);
+    console.log(video)
+    video.save((err, doc)=>{
+        if(err) return res.json({success: false, err})
+        res.status(200).json({success:true, doc})
+    })
+});
+
+
+router.post("/getVideoDetail", (req, res)=>{
+    // 비디오정보를 db에서 가져와 보낸다.
+
+    Video.findOne({"_id": req.body.videoId})
+    .populate("writer")
+    .exec((err, videoDetail)=>{
+      if(err) return res.status(400).send(err);
+      return res.status(200).json({success:true, videoDetail})
+    })
+})
+
+router.get("/getVideos", (req, res)=>{
+    // 비디오정보를 db에서 가져와 보낸다.
+
+    Video.find()
+    .populate('writer')
+    .exec((err, videos)=>{
+        if(err) return res.status(400).send(err)
+        res.status(200).json({success: true, videos})
+    })
+})
 
 
 router.post("/thumbnail", (req, res) => {

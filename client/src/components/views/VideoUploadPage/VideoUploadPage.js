@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Typography, Button, Form, message, Input, Icon, Select } from "antd";
 import Dropzone from "react-dropzone";
 import Axios from "axios";
+import {useSelector} from 'react-redux'
+import { FaNs8 } from "react-icons/fa";
 
 const { TextArea } = Input;
 const { Title } = Typography;
@@ -18,7 +20,8 @@ const CategoryOptions = [
   { value: 3, label: "list4" },
 ];
 
-function VideoUploadPage() {
+function VideoUploadPage(props) {
+    const user = useSelector(state => state.user)
   const [VideoTitle, setVideoTitle] = useState("");
   const [Description, setDescription] = useState("");
   const [Private, setPrivate] = useState(0);
@@ -68,12 +71,43 @@ function VideoUploadPage() {
     });
   };
 
+  const onSumit = (e) => {
+      e.preventDefault();
+
+    let variables = {
+        writer: user.userData._id,
+        title: VideoTitle,
+        description: Description,
+        privacy: Private,
+        filepath: FilePath,
+        category: Category,
+        duration: Duration,
+        thumbnail: ThumbnailPath,
+
+    }
+
+      Axios.post('/api/video/videoUpload', variables)
+        .then(response=>{
+          console.log(333)
+          console.log(variables)
+            if(response.data.success) {
+                message.success('성공적으로 업로드를 했습니다.')
+                setTimeout(() => {
+                    props.history.push('/')
+                }, 3000);
+                console.log(response.data)
+            } else {
+                alert('비디오 업로드 실패')
+            }
+        })
+  }
+
   return (
     <div style={{ maxWidth: "700px", margin: "2rem auto" }}>
       <div style={{ textAlign: "center", marginBottom: "2rem" }}>
         <Title level={2}>Upload Page</Title>
       </div>
-      <Form onSubmit>
+      <Form onSubmit={onSumit}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           {/* 드롭 영역 */}
           <Dropzone onDrop={onDrop} multiple={false} maxSize={100000000}>
@@ -128,7 +162,7 @@ function VideoUploadPage() {
             </option>
           ))}
         </select>
-        <Button type="primary" size="large" onClick>
+        <Button type="primary" size="large" onClick={onSumit}>
           Submit
         </Button>
       </Form>
