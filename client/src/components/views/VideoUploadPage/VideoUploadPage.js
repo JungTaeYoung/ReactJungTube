@@ -3,7 +3,6 @@ import { Typography, Button, Form, message, Input, Icon, Select } from "antd";
 import Dropzone from "react-dropzone";
 import Axios from "axios";
 import {useSelector} from 'react-redux'
-import { FaNs8 } from "react-icons/fa";
 
 const { TextArea } = Input;
 const { Title } = Typography;
@@ -46,6 +45,7 @@ function VideoUploadPage(props) {
   const onDrop = (files) => {
     let formData = new FormData();
     const config = { "content-type": "multipart/form-data" };
+    console.log(files[0])
     formData.append("file", files[0]);
     Axios.post("/api/video/uploadfiles", formData, config).then((response) => {
       if (response.data.success) {

@@ -32,6 +32,9 @@ const userSchema = mongoose.Schema({
     },
     tokenExp :{
         type: Number
+    },
+    active: {
+        type: Boolean
     }
 })
 
