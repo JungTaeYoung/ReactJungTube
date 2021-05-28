@@ -4,6 +4,8 @@ import Dropzone from "react-dropzone";
 import Axios from "axios";
 import {useSelector} from 'react-redux'
 
+import { SearchOutlined } from '@ant-design/icons';
+
 const { TextArea } = Input;
 const { Title } = Typography;
 
