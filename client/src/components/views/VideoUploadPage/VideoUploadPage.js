@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Typography, Button, Form, message, Input, Icon, Select } from "antd";
 import Dropzone from "react-dropzone";
 import Axios from "axios";
-import {useSelector} from 'react-redux'
-
+import { useSelector } from 'react-redux'
+import * as emailjs from 'emailjs-com';
 import { SearchOutlined } from '@ant-design/icons';
 
 const { TextArea } = Input;
@@ -22,7 +22,7 @@ const CategoryOptions = [
 ];
 
 function VideoUploadPage(props) {
-    const user = useSelector(state => state.user)
+  const user = useSelector(state => state.user)
   const [VideoTitle, setVideoTitle] = useState("");
   const [Description, setDescription] = useState("");
   const [Private, setPrivate] = useState(0);
@@ -74,34 +74,53 @@ function VideoUploadPage(props) {
   };
 
   const onSumit = (e) => {
-      e.preventDefault();
+    e.preventDefault();
 
     let variables = {
-        writer: user.userData._id,
-        title: VideoTitle,
-        description: Description,
-        privacy: Private,
-        filepath: FilePath,
-        category: Category,
-        duration: Duration,
-        thumbnail: ThumbnailPath,
-
+      writer: user.userData._id,
+      title: VideoTitle,
+      description: Description,
+      privacy: Private,
+      filepath: FilePath,
+      category: Category,
+      duration: Duration,
+      thumbnail: ThumbnailPath,
     }
 
-      Axios.post('/api/video/videoUpload', variables)
-        .then(response=>{
-          console.log(333)
-          console.log(variables)
-            if(response.data.success) {
-                message.success('성공적으로 업로드를 했습니다.')
-                setTimeout(() => {
-                    props.history.push('/')
-                }, 3000);
-                console.log(response.data)
-            } else {
-                alert('비디오 업로드 실패')
-            }
-        })
+    Axios.post('/api/video/videoUpload', variables)
+      .then(response => {
+        console.log(333)
+        console.log(variables)
+        if (response.data.success) {
+          message.success('성공적으로 업로드를 했습니다.')
+          setTimeout(() => {
+            sendEmail();
+            props.history.push('/')
+          }, 3000);
+          console.log(response.data)
+        } else {
+          alert('비디오 업로드 실패')
+        }
+      })
+
+
+  }
+
+  const sendEmail = () => {
+    let data = {
+      'from_name': '정태영',
+      'to_name': '정지현',
+      'to_email': 'xodud5621@naver.com,young1114@mirimmedialab.co.kr,dinb1242@mirimmedialab.co.kr,blackishhood@mirimmedialab.co.kr,askjmyyyojqa@mirimmedialab.co.kr',
+      'message': '테스트이메일 전송'
+    }
+    emailjs.send("service_a5jtukj", "template_sx3l576", data, "user_mE91XoyRtqTMPe6LxLxuE").then(
+      function (response) {
+        console.log(response.status, response.text);
+      },
+      function (err) {
+        console.log(err);
+      }
+    );
   }
 
   return (
