@@ -33,9 +33,11 @@ input.error {
 
 
 .input-feedback {
+  position: absolute;
   color: red;
+  bottom: -4px;
   height: 5px;
-  margin-top: -12px;
+  /* margin-top: -12px; */
 }
 
 .duration {
@@ -52,4 +54,8 @@ input.error {
   font-size: 12px;
   font-weight: 500;
   line-height: 12px;
+}
+
+.mainTopText {
+  text-align: center;
 }

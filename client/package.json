@@ -3,16 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/dark-theme": "2.0.2",
     "@ant-design/icons": "4.6.2",
-    "antd": "^3.24.1",
+    "antd": "4.16.2",
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "emailjs-com": "2.6.4",
     "formik": "^1.5.8",
     "moment": "^2.24.0",
-    "react": "^16.8.6",
+    "react": "17.0.2",
     "react-app-polyfill": "^1.0.6",
-    "react-dom": "^16.8.6",
+    "react-css-theme-switcher": "0.3.0",
+    "react-dom": "17.0.2",
     "react-dropzone": "^11.2.4",
     "react-icons": "^3.7.0",
     "react-redux": "^7.1.0-rc.1",
@@ -27,7 +29,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "webbuild": "webpack",
+    "startb": "serve -l 3000 -s build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,6 +49,31 @@
     ]
   },
   "devDependencies": {
-    "http-proxy-middleware": "^1.0.3"
-  }
+    "@babel/core": "7.14.3",
+    "@babel/preset-env": "7.14.4",
+    "@babel/preset-react": "7.13.13",
+    "autoprefixer": "10.2.6",
+    "babel-loader": "8.2.2",
+    "clean-webpack-plugin": "4.0.0-alpha.0",
+    "css-loader": "5.2.6",
+    "gulp": "4.0.2",
+    "gulp-csso": "4.0.1",
+    "gulp-debug": "4.0.0",
+    "gulp-less": "4.0.1",
+    "gulp-postcss": "9.0.0",
+    "html-loader": "2.1.2",
+    "html-webpack-plugin": "5.3.1",
+    "http-proxy-middleware": "^1.0.3",
+    "less-plugin-npm-import": "2.1.0",
+    "mini-css-extract-plugin": "1.6.0",
+    "node-sass": "6.0.0",
+    "postcss": "8.3.0",
+    "sass-loader": "12.0.0",
+    "style-loader": "2.0.0",
+    "webpack": "5.38.1",
+    "webpack-cli": "4.7.2",
+    "webpack-dev-server": "3.11.2"
+  },
+  "main": "index.js",
+  "license": "MIT"
 }

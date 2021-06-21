@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Typography, Button, Form, message, Input, Icon, Select } from "antd";
+import { Typography, Button, Form, message, Input, Select } from "antd";
 import Dropzone from "react-dropzone";
 import Axios from "axios";
 import { useSelector } from 'react-redux'
 import * as emailjs from 'emailjs-com';
-import { SearchOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 
 const { TextArea } = Input;
 const { Title } = Typography;
@@ -146,7 +146,8 @@ function VideoUploadPage(props) {
                 {...getRootProps()}
               >
                 <input {...getInputProps()} />
-                <Icon type="plus" style={{ fontSize: "3rem" }} />
+                <PlusOutlined />
+                {/* <Icon type="plus" style={{ fontSize: "3rem" }} /> */}
               </div>
             )}
           </Dropzone>

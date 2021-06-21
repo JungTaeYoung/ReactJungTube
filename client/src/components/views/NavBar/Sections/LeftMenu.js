@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Menu } from 'antd';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
 function LeftMenu(props) {
+
   return (
-    <Menu theme={props.theme} mode={props.mode} style={{ backgroundColor: 'transparent' }}>
+    
+    <Menu mode={props.mode} style={{ backgroundColor: 'transparent' }}>
       <Menu.Item key="mail">
         <a href="/">모든 영상</a>
       </Menu.Item>

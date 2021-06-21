@@ -41,7 +41,7 @@ function RegisterPage(props) {
     <Formik
       initialValues={{
         email: '',
-        lastName: '',
+        lastname: '',
         name: '',
         password: '',
         confirmPassword: ''
@@ -49,7 +49,7 @@ function RegisterPage(props) {
       validationSchema={Yup.object().shape({
         name: Yup.string()
           .required('Name is required'),
-        lastName: Yup.string()
+        lastname: Yup.string()
           .required('Last Name is required'),
         email: Yup.string()
           .email('Email is invalid')
@@ -101,7 +101,7 @@ function RegisterPage(props) {
             <h2>Sign up</h2>
             <Form style={{ minWidth: '375px' }} {...formItemLayout} onSubmit={handleSubmit} >
 
-              <Form.Item required label="Name">
+              <Form.Item required label="Name" >
                 <Input
                   id="name"
                   placeholder="Enter your name"
@@ -120,22 +120,22 @@ function RegisterPage(props) {
 
               <Form.Item required label="Last Name">
                 <Input
-                  id="lastName"
+                  id="lastname"
                   placeholder="Enter your Last Name"
                   type="text"
-                  value={values.lastName}
+                  value={values.lastname}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    errors.lastName && touched.lastName ? 'text-input error' : 'text-input'
+                    errors.lastname && touched.lastname ? 'text-input error' : 'text-input'
                   }
                 />
-                {errors.lastName && touched.lastName && (
-                  <div className="input-feedback">{errors.lastName}</div>
+                {errors.lastname && touched.lastname && (
+                  <div className="input-feedback">{errors.lastname}</div>
                 )}
               </Form.Item>
 
-              <Form.Item required label="Email" hasFeedback validateStatus={errors.email && touched.email ? "error" : 'success'}>
+              <Form.Item required label="Email" hasFeedback validateStatus={errors.email && touched.email ? "error" : 'success'} >
                 <Input
                   id="email"
                   placeholder="Enter your Email"

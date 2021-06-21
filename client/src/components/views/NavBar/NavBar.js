@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LeftMenu from './Sections/LeftMenu';
 import RightMenu from './Sections/RightMenu';
-import { Drawer, Button, Icon } from 'antd';
+import { theme } from '../../../_actions/preferences_actions';
+import { useSelector, useDispatch } from "react-redux";
+import { Drawer, Button } from 'antd';
+import { AlignRightOutlined } from '@ant-design/icons';
 import './Sections/Navbar.css';
+
 
 function NavBar() {
   const [visible, setVisible] = useState(false)
+
+  const isDrak = useSelector(state => state.preferences.darkThemeEnabled)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    //To know my current status, send Auth request 
+
+  }, [])
+
 
   const showDrawer = () => {
     setVisible(true)
@@ -16,16 +28,16 @@ function NavBar() {
   };
 
   return (
-    <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%' }}>
+    <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%', backgroundColor: (isDrak ? '#202020' : '#fff') }}>
       <div className="menu__logo">
-        <a href="/"><img width="50px" src="/images/logo.png" /></a>
+        <a href="/"><img width="30px" src="/images/logo.png" /></a>
       </div>
       <div className="menu__container">
         <div className="menu_left">
-          <LeftMenu mode="horizontal" theme='dark' />
+          <LeftMenu mode="horizontal" />
         </div>
         <div className="menu_rigth">
-          <RightMenu mode="horizontal" theme='dark' />
+          <RightMenu mode="horizontal" />
         </div>
 
         <Button
@@ -33,7 +45,7 @@ function NavBar() {
           type="primary"
           onClick={showDrawer}
         >
-          <Icon type="align-right" />
+          <AlignRightOutlined />
         </Button>
         <Drawer
           title="메뉴"
@@ -46,8 +58,8 @@ function NavBar() {
           // headerStyle={{ backgroundColor: "#001529", padding: "0" }}
           drawerStyle={{ backgroundColor: "#001529", padding: "0" }}
         >
-          <LeftMenu mode="inline" theme='dark' />
-          <RightMenu mode="inline" theme='dark' />
+          <LeftMenu mode="inline" />
+          <RightMenu mode="inline" />
         </Drawer>
       </div>
     </nav>

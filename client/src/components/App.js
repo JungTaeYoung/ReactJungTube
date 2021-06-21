@@ -7,12 +7,13 @@ import LoginPage from "./views/LoginPage/LoginPage.js";
 import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import VideoUploadPage from "./views/VideoUploadPage/VideoUploadPage.js"
 import VideoDetailPage from "./views/VideoDetailPage/VideoDetailPage.js"
+import MyPage from "./views/MyPage/MyPage.js"
 import NavBar from "./views/NavBar/NavBar";
 import Footer from "./views/Footer/Footer"
 import SubscriptionPage from "./views/SubscriptionPage/SubscriptionPage"
 
 import { Layout, Menu, Breadcrumb } from 'antd'
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
+import { UserOutlined, LaptopOutlined, NotificationOutlined, HomeFilled } from '@ant-design/icons';
 
 
 const { SubMenu } = Menu;
@@ -29,21 +30,19 @@ function App() {
         <NavBar />
         <Sider width={200} className="site-layout-background" style={{ 
           
+          overflow: 'auto',
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
           
-          
-          paddingTop: '69px', minHeight: 'calc(100vh - 80px)' }}>
+          paddingTop: '52px', minHeight: 'calc(100vh - 80px)' }}>
           <Menu
             mode="inline"
             defaultSelectedKeys={['1']}
             defaultOpenKeys={['sub1']}
             style={{ height: '100%', borderRight: 0 }}
           >
-            <SubMenu key="sub1" icon={<UserOutlined />} title="subnav 1">
-              <Menu.Item key="1">option1</Menu.Item>
-              <Menu.Item key="2">option2</Menu.Item>
-              <Menu.Item key="3">option3</Menu.Item>
-              <Menu.Item key="4">option4</Menu.Item>
-            </SubMenu>
+            <Menu.Item icon={<HomeFilled />} key="1">홈</Menu.Item>
             <SubMenu key="sub2" icon={<LaptopOutlined />} title="subnav 2">
               <Menu.Item key="5">option5</Menu.Item>
               <Menu.Item key="6">option6</Menu.Item>
@@ -58,11 +57,11 @@ function App() {
             </SubMenu>
           </Menu>
         </Sider>
-        <Layout style={{ padding: '69px 24px 24px', minHeight: 'calc(100vh - 80px)' }}>
+        <Layout style={{ padding: '52px 0px 24px', minHeight: 'calc(100vh - 80px)', marginLeft: '200px'}}>
           <Content
             className="site-layout-background"
             style={{
-              padding: 24,
+              padding: 0,
               margin: 0,
               minHeight: 280,
             }}
@@ -72,6 +71,7 @@ function App() {
               <Route exact path="/login" component={Auth(LoginPage, false)} />
               <Route exact path="/register" component={Auth(RegisterPage, false)} />
               <Route exact path="/video/upload" component={Auth(VideoUploadPage, true)} />
+              <Route exact path="/mypage" component={Auth(MyPage, true)} />
               <Route exact path="/video/:videoId" component={Auth(VideoDetailPage, null)} />
               <Route exact path="/subscription" component={Auth(SubscriptionPage, null)} />
             </Switch>

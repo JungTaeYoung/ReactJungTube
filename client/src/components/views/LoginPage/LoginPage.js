@@ -5,6 +5,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Form, Icon, Input, Button, Checkbox, Typography } from 'antd';
 import { useDispatch } from "react-redux";
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 const { Title } = Typography;
 
@@ -45,7 +46,10 @@ function LoginPage(props) {
           dispatch(loginUser(dataToSubmit))
             .then(response => {
               if (response.payload.loginSuccess) {
+                console.log(response.payload)
                 window.localStorage.setItem('userId', response.payload.userId);
+                window.localStorage.setItem('userFullName', response.payload.name);
+                window.localStorage.setItem('userImage', response.payload.image);
                 if (rememberMe === true) {
                   window.localStorage.setItem('rememberMe', values.id);
                 } else {
@@ -87,7 +91,7 @@ function LoginPage(props) {
               <Form.Item required>
                 <Input
                   id="email"
-                  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder="Enter your email"
                   type="email"
                   value={values.email}
@@ -105,7 +109,7 @@ function LoginPage(props) {
               <Form.Item required>
                 <Input
                   id="password"
-                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  prefix={<LockOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder="Enter your password"
                   type="password"
                   value={values.password}

@@ -62,6 +62,20 @@ router.post("/getVideoDetail", (req, res) => {
     })
 })
 
+
+// 비디오 삭제 합니다.
+router.delete("/videos/:videoId", auth, (req, res) => {
+  console.log(req.user)
+  const videoId = req.params.videoId
+  console.log(videoId)
+  Video.deleteOne({ writer: req.user._id, _id: videoId })
+    .exec((err, doc) => {
+      if (err) res.status(400).send(err);
+
+      res.status(200).json({ success: true })
+    })
+})
+
 router.get("/getVideos", (req, res) => {
   // 비디오정보를 db에서 가져와 보낸다.
 
