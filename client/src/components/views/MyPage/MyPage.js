@@ -27,14 +27,14 @@ const videoUpdate = () => {
 
 // 비디오 삭제
 function videoDelete(id) {
-    Axios.delete('/api/video/videos/'+id)
-    .then(response=>{
-        if(response.data.success) {
-            alert("삭제 성공")
-        } else {
-            alert("삭제 실패 하였습니다.")
-        }
-    })
+    Axios.delete('/api/video/videos/' + id)
+        .then(response => {
+            if (response.data.success) {
+                alert("삭제 성공")
+            } else {
+                alert("삭제 실패 하였습니다.")
+            }
+        })
 }
 
 const videoUpdateData = (

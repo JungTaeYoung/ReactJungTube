@@ -58,14 +58,21 @@ function VideoUploadPage(props) {
           fileName: response.data.fileName,
         };
         setFilePath(response.data.url);
-        Axios.post("/api/video/thumbnail", variable).then((response) => {
+        Axios.post("/api/video/transcoding ", variable).then((response) => {
           if (response.data.success) {
-            setDuration(response.data.fileDuration);
-            setThumbnailPath(response.data.url);
+            Axios.post("/api/video/thumbnail", variable).then((response) => {
+              if (response.data.success) {
+                setDuration(response.data.fileDuration);
+                setThumbnailPath(response.data.url);
+              } else {
+                alert("thumbnail create error");
+              }
+            });
           } else {
-            alert("thumbnail create error");
+            alert("인코딩 변환불가");
           }
         });
+
       } else {
         console.log(response.data);
         alert("video uplaod error");
