@@ -10,6 +10,8 @@
     "core-js": "^3.6.4",
     "emailjs-com": "2.6.4",
     "formik": "^1.5.8",
+    "less": "4.1.1",
+    "less-loader": "10.0.0",
     "moment": "^2.24.0",
     "react": "17.0.2",
     "react-app-polyfill": "^1.0.6",
@@ -23,6 +25,7 @@
     "redux": "^4.0.0",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0",
+    "reqwest": "2.0.5",
     "yup": "^0.27.0"
   },
   "scripts": {

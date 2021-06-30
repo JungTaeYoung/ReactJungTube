@@ -76,10 +76,44 @@ router.delete("/videos/:videoId", auth, (req, res) => {
     })
 })
 
+router.get("/getMyVideos", auth, (req, res) => {
+  // 내 영상 불러오기
+  // req.query.page: 파라미터 값 page 페이지
+  // req.query.count: 파라미터 값 count 개수
+
+  const page = parseInt(req.query.page) || "all"
+  const count = parseInt(req.query.count) || "all"
+
+  console.log(req.user)
+  console.log(page)
+  console.log(count)
+
+
+  if (page == "all" && count == "all") {
+    Video.find({ writer: req.user._id })
+      .populate('writer')
+      .exec((err, videos) => {
+        if (err) return res.status(400).send(err)
+        res.status(200).json({ success: true, videos })
+      })
+  } else {
+    Video.find({ writer: req.user._id })
+      .skip((page - 1) * count)
+      .limit(count)
+      .populate('writer')
+      .exec((err, videos) => {
+        if (err) return res.status(400).send(err)
+        console.log(videos)
+        res.status(200).json({ success: true, videos })
+      })
+  }
+})
+
 router.get("/getVideos", (req, res) => {
   // 비디오정보를 db에서 가져와 보낸다.
-
   Video.find()
+    .skip((req.query.page - 1) * 8)
+    .limit(8)
     .populate('writer')
     .exec((err, videos) => {
       if (err) return res.status(400).send(err)

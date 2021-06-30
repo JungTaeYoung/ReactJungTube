@@ -10,20 +10,21 @@ export default function (SpecificComponent, option, adminRoute = null) {
         const dispatch = useDispatch();
 
         useEffect(() => {
-            //To know my current status, send Auth request 
+            // 현재 내 로그인 상태 확인
             dispatch(auth()).then(response => {
-                //Not Loggined in Status 
+                // 로그인 하지 않았을 때
                 if (!response.payload.isAuth) {
+                    // 로그인 전용 페이지 option 으로 구분
                     if (option) {
                         props.history.push('/login')
                     }
-                    //Loggined in Status 
+                    // 화면보기 가능
                 } else {
-                    //supposed to be Admin page, but not admin person wants to go inside
+                    // 어드민 전용 체크
                     if (adminRoute && !response.payload.isAdmin) {
                         props.history.push('/')
                     }
-                    //Logged in Status, but Try to go into log in page 
+                    // 로그인한 유저는 보면 안되는 페이지
                     else {
                         if (option === false) {
                             props.history.push('/')

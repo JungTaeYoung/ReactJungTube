@@ -1,0 +1,48 @@
+.MPlayer{
+    display: flex;
+    position: relative;
+}
+
+.controlBox {
+    background: linear-gradient(to top, rgba(50,50,50,0.8), 20%, rgba(0,0,0,0));
+    display: inline-block;
+    width: 100%;
+    position: absolute;
+    padding-top: 20%;
+    bottom: 0;
+    left: 0;
+}
+
+.controlBar {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    position: relative;
+    bottom: 4px;
+    left: 0;
+    width: 98%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #fff;
+}
+
+
+
+.controlBar .times {
+    display: inline-block;
+    font-size: 0.8rem;
+}
+
+.progressBar {
+    position: absolute;
+    width: 100%;
+    margin: 0 auto;
+    height: 4px;
+    top: -10px;
+}
+.progressBar input {
+    position: absolute;
+    top:-4px;
+    left: 0;
+    width: 100%;
+}

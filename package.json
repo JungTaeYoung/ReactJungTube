@@ -17,6 +17,7 @@
   "author": "John ahn",
   "license": "ISC",
   "dependencies": {
+    "@ant-design/icons": "4.6.2",
     "@ffmpeg-installer/ffmpeg": "^1.0.20",
     "bcrypt": "5.0.1",
     "body-parser": "^1.18.3",

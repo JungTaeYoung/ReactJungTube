@@ -21,8 +21,6 @@ function RightMenu(props) {
   //To know my current status, send Auth request 
 
 
-
-
   const [UserImage, setUserImage] = useState('')
 
 
