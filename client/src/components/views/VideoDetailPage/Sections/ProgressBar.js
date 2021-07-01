@@ -10,6 +10,7 @@ function ProgressBar({ currentTime, totalTime, onTouchStart, onChange, onTouchMo
                 max="100"
                 value={percent}
                 step="0.01"
+                onInput={onChange}
                 onChange={onChange}
                 onMouseDown={onTouchStart}
                 onMouseUp={onTouchEnd}

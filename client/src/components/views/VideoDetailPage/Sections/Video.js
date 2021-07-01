@@ -10,7 +10,7 @@ function Video(props) {
     const ref = useRef(null);
     let videoElem = ref && ref.current;
 
-    let totalTime = (ref && ref.current && ref.current.duration) || 0;
+    let timeUpdateOnOff = true;
     const timeUpdate = () => {
         const observedVideoElem = ref && ref.current;
         if (observedVideoElem) {
@@ -18,7 +18,9 @@ function Video(props) {
                 setTotalTime((ref && ref.current && ref.current.duration) || 0)
             })
             observedVideoElem.addEventListener("timeupdate", () => {
-                setCurrentTime(observedVideoElem.currentTime)
+                if (timeUpdateOnOff) {
+                    setCurrentTime(observedVideoElem.currentTime)
+                }
             })
             setPlayIng(false);
             observedVideoElem.pause();
@@ -38,8 +40,7 @@ function Video(props) {
     }
 
     const onTouchStart = (e) => {
-        // 컨트롤바 드래그 시작
-        console.log(e)
+        timeUpdateOnOff = false;
         if (videoElem) {
             videoElem.pause();
             setPlayIng(false);
@@ -47,20 +48,29 @@ function Video(props) {
 
     }
 
-
-
-    const onTouchEnd = (e) => {
+    const onTouchEnd = async (e) => {
         // 컨트롤바 드래그 끝
-        videoElem.currentTime = CurrentTime;
-        console.log(e)
-        videoElem.play();
+        console.log("onTouchEnd" + e.target.value)
+        try {
+            videoElem.play();
+        } catch(e) {
+            setTimeout(()=>{
+                videoElem.play();
+            },10)
+        }
+        timeUpdateOnOff = true;
         setPlayIng(true);
+        
     }
-
+    
     const onChange = (e) => {
+        console.log("onChange")
         // 컨트롤바 체인지 이벤트
+
+        console.log(e.target.value / 100 * TotalTime)
+        videoElem.currentTime = e.target.value / 100 * TotalTime;
         setCurrentTime(e.target.value / 100 * TotalTime)
-        console.log(e)
+
     }
 
 
@@ -68,11 +78,7 @@ function Video(props) {
 
     useEffect(() => {
         console.log("ref.current.duration" + ref.current.duration)
-        // if(!ref) {
-        //     videoElem = ref && ref.current;
-        //     totalTime = (ref && ref.current && ref.current.duration) || 0;
 
-        // }
         timeUpdate();
         //최소 실행
         console.log(3)
