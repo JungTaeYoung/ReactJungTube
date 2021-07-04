@@ -94,10 +94,9 @@ class LoadMoreList extends React.Component {
                         actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>]}
                     >
                         <Skeleton avatar title={false} loading={item.loading} active>
+                            <img style={{ height: '50px' }} src={`http://localhost:5000/${item.thumbnail}`} />
                             <List.Item.Meta
-                                avatar={
-                                    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                                }
+
                                 title={<a href="https://ant.design">{item.title}</a>}
                                 description={item.description}
                             />

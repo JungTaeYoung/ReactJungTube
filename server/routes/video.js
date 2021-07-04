@@ -1,10 +1,13 @@
 const express = require("express");
 const router = express.Router();
+
+
+const fs = require('fs');
 // const { Video } = require("../models/Video");
 
 const { auth } = require("../middleware/auth");
 const multer = require("multer");
-var ffmpeg = require("fluent-ffmpeg");
+const ffmpeg = require("fluent-ffmpeg");
 const { Video } = require("../models/Video");
 
 const { Subscriber } = require("../models/Subscriber");
@@ -186,31 +189,37 @@ router.post("/thumbnail", (req, res) => {
 
 
 router.post("/transcoding", (req, res) => {
-
   let beforeVideoName = req.body.url.split('\\')
   beforeVideoName = beforeVideoName[beforeVideoName.length - 1] // 원본 비디오 파일 이름
   beforeVideoName = beforeVideoName.split(".")[0];
-  ffmpeg(req.body.url)
+  fs.rename('uploads/' + beforeVideoName + '.mp4', 'uploads/' + beforeVideoName + '_before.mp4', function (err) {
+    if (err) throw err;
+    console.log('File Renamed!');
+    // 변경 전 파일
+    let videoEncoding = (req.body.url).split(".")[0] + '_before.mp4';
+    console.log("videoEncoding" + videoEncoding)
+    ffmpeg(videoEncoding)
+      .output('uploads/' + beforeVideoName + '_after.mp4')
+      .videoCodec('libx264')
+      .noAudio()
+      .size('1280x?')
 
-
-    .output('uploads/' + beforeVideoName + '.mp4')
-    .videoCodec('libx264')
-    .noAudio()
-    .size('1280x?')
-
-    .on("end", function () {
-      console.log("Screenshots taken");
-      return res.json({
-        success: true,
-        // url: transFilePath,
-        // fileDuration: fileDuration,
-      });
-    })
-    .on("error", function (err) {
-      console.error(err);
-      return res.json({ success: false, err });
-    })
-    .run();
+      .on("end", function () {
+        fs.unlink('uploads/' + beforeVideoName + '_before.mp4', function (err) {
+          fs.rename('uploads/' + beforeVideoName + '_after.mp4', 'uploads/' + beforeVideoName + '.mp4', function (err) {
+            if (err) throw err;
+          })
+        })
+        return res.json({
+          success: true,
+        });
+      })
+      .on("error", function (err) {
+        console.error(err);
+        return res.json({ success: false, err });
+      })
+      .run();
+  });
 });
 
 module.exports = router;
