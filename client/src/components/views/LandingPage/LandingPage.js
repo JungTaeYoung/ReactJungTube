@@ -103,12 +103,12 @@ function LandingPage() {
     return (
         <>
             <Card className="mainTopText" style={{ width: "98%", margin: "1rem auto 4rem" }}>
-                <p style={{ fontSize: '30px', marginBottom: '-4px'}}>🎅</p>
+                <p style={{ fontSize: '30px', marginBottom: '14px'}}>🎅</p>
                 <h2 className="title">영상 저장소에 오신 걸 환영합니다.</h2>
                 <p className="description">여러분들의 다양한 영상들을 공유해보세요. 이 모든게 무료입니다.</p>
             </Card>
             <div style={{ width: "85%", margin: "3rem auto" }}>
-                <Row gutter={[32, 16]}>
+                <Row gutter={[16, 48]}>
                     {renderCards}
                     {Loading && <Spin />}
                     {Error && <Spin />}

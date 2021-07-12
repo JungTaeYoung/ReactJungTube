@@ -60,7 +60,6 @@ function Video(props) {
         }
         timeUpdateOnOff = true;
         setPlayIng(true);
-        
     }
     
     const onChange = (e) => {
@@ -81,7 +80,6 @@ function Video(props) {
 
         timeUpdate();
         //최소 실행
-        console.log(3)
     }, [])
 
     return (

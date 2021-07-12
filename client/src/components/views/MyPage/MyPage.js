@@ -7,6 +7,8 @@ import ModalButton from '../../ModalButton'
 import Axios from "axios";
 import LoadMoreList from './LoadMoreList'
 
+import './index.css'
+
 import moment from "moment"
 import { Link } from "react-router-dom";
 
@@ -111,7 +113,20 @@ function MyPage() {
                     <Col lg={24}>
                         <CardBox title="내 영상">
                             {/* <Table columns={columns} dataSource={TableData} scroll={{ y: 240 }} /> */}
-                            <LoadMoreList count={4}/>
+                            <div className="myVideoHead">
+                                <li>
+                                    동영상
+                                </li>
+                                <li>
+                                    업로드 날짜
+                                </li>
+                                <li>
+                                    조희수
+                                </li>
+                            </div>
+                            <div className="myVideoBody">
+                                <LoadMoreList count={4} />
+                            </div>
                         </CardBox>
                     </Col>
                 </Row>

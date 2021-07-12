@@ -62,7 +62,7 @@ function VideoUploadPage(props) {
           if (response.data.success) {
             Axios.post("/api/video/transcoding ", variable).then((response) => {
               if (response.data.success) {
-    
+
               } else {
                 alert("인코딩 변환불가");
               }
@@ -73,7 +73,7 @@ function VideoUploadPage(props) {
             alert("thumbnail create error");
           }
         });
-        
+
 
       } else {
         console.log(response.data);
@@ -119,7 +119,7 @@ function VideoUploadPage(props) {
     let data = {
       'from_name': '정태영',
       'to_name': '정지현',
-      'to_email': 'xodud5621@naver.com,young1114@mirimmedialab.co.kr,dinb1242@mirimmedialab.co.kr,blackishhood@mirimmedialab.co.kr,askjmyyyojqa@mirimmedialab.co.kr',
+      'to_email': 'xodud5621@naver.com,young1114@mirimmedialab.co.kr',
       'message': '테스트이메일 전송'
     }
     emailjs.send("service_a5jtukj", "template_sx3l576", data, "user_mE91XoyRtqTMPe6LxLxuE").then(

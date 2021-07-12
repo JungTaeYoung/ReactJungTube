@@ -91,10 +91,10 @@ class LoadMoreList extends React.Component {
                 dataSource={list}
                 renderItem={item => (
                     <List.Item
-                        actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>]}
+                        actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>, <a key="list-loadmore-more">more</a>]}
                     >
                         <Skeleton avatar title={false} loading={item.loading} active>
-                            <img style={{ height: '50px' }} src={`http://localhost:5000/${item.thumbnail}`} />
+                            <img style={{ height: '80px' }} src={`http://localhost:5000/${item.thumbnail}`} />
                             <List.Item.Meta
 
                                 title={<a href="https://ant.design">{item.title}</a>}

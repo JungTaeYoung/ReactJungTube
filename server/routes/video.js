@@ -115,8 +115,8 @@ router.get("/getMyVideos", auth, (req, res) => {
 router.get("/getVideos", (req, res) => {
   // 비디오정보를 db에서 가져와 보낸다.
   Video.find()
-    .skip((req.query.page - 1) * 8)
-    .limit(8)
+    .skip((req.query.page - 1) * 16)
+    .limit(16)
     .populate('writer')
     .exec((err, videos) => {
       if (err) return res.status(400).send(err)
