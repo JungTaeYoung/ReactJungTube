@@ -28,7 +28,6 @@ class CustomRoute extends PureComponent {
   }
 }
 
-
 CustomRoute.defaultProps = {
   layout : true
 }

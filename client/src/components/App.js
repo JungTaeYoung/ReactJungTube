@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { Route, Switch } from "react-router-dom";
 import Auth from "../hoc/auth";
 // pages for this product
+import LandingPage from "./views/LandingPage/LandingPage";
 import VideoPage from "./views/VideoPage/VideoPage.js";
 import LoginPage from "./views/LoginPage/LoginPage.js";
 import RegisterPage from "./views/RegisterPage/RegisterPage.js";
@@ -30,9 +31,10 @@ const { Header, Content, Sider } = Layout;
 */
 
 function App() {
+
   return (
     <Switch>
-              <CustomRoute exact path="/" component={Auth(LandingPage, null)} />
+              <CustomRoute exact path="/" component={Auth(LandingPage, null)} layout={false} />
               <CustomRoute exact path="/videos" component={Auth(VideoPage, null)} />
               <CustomRoute exact path="/login" component={Auth(LoginPage, false)} />
               <CustomRoute exact path="/register" component={Auth(RegisterPage, false)} />
