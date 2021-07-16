@@ -18,8 +18,8 @@ import ReduxThunk from 'redux-thunk';
 import { ThemeSwitcherProvider } from "react-css-theme-switcher";
 
 const themes = {
-    dark: `http://localhost:3000/dark-theme.css`,
-    light: `http://localhost:3000/light-theme.css`,
+    dark: ``,
+    light: ``,
 };
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore);
 

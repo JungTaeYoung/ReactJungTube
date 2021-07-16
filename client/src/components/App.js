@@ -11,7 +11,7 @@ import VideoDetailPage from "./views/VideoDetailPage/VideoDetailPage.js"
 import MyPage from "./views/MyPage/MyPage.js"
 import SubscriptionPage from "./views/SubscriptionPage/SubscriptionPage"
 import CustomRoute from "./custom-route";
-
+import 'antd/dist/antd.css';
 import { Layout, Menu, Breadcrumb } from 'antd'
 import { UserOutlined, LaptopOutlined, NotificationOutlined, HomeFilled } from '@ant-design/icons';
 

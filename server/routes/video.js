@@ -34,6 +34,7 @@ let storage = multer.diskStorage({
 const uplaod = multer({ storage: storage }).single("file")
 
 router.post("/uploadfiles", (req, res) => {
+
   // 비디오 저장
   uplaod(req, res, err => {
     if (err) {
@@ -114,6 +115,7 @@ router.get("/getMyVideos", auth, (req, res) => {
 
 router.get("/getVideos", (req, res) => {
   // 비디오정보를 db에서 가져와 보낸다.
+  
   Video.find()
     .skip((req.query.page - 1) * 16)
     .limit(16)

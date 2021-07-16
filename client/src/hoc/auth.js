@@ -22,12 +22,12 @@ export default function (SpecificComponent, option, adminRoute = null) {
                 } else {
                     // 어드민 전용 체크
                     if (adminRoute && !response.payload.isAdmin) {
-                        props.history.push('/')
+                        props.history.push('/videos')
                     }
                     // 로그인한 유저는 보면 안되는 페이지
                     else {
                         if (option === false) {
-                            props.history.push('/')
+                            props.history.push('/videos')
                         }
                     }
                 }

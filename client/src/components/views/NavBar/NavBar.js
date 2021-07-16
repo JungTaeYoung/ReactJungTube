@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LeftMenu from './Sections/LeftMenu';
 import RightMenu from './Sections/RightMenu';
+import SearchBox from './Sections/SearchBox';
 import { theme } from '../../../_actions/preferences_actions';
 import { useSelector, useDispatch } from "react-redux";
 import { Drawer, Button } from 'antd';
@@ -30,12 +31,13 @@ function NavBar() {
   return (
     <nav className="menu" style={{ position: 'fixed', zIndex: 5, width: '100%', backgroundColor: (isDrak ? '#202020' : '#fff') }}>
       <div className="menu__logo">
-        <a href="/"><img width="30px" src="/images/logo.png" /></a>
+        <a href="/videos"><img width="30px" src="/images/logo.png" /></a>
       </div>
       <div className="menu__container">
         <div className="menu_left">
-          <LeftMenu mode="horizontal" />
+          <LeftMenu mode="horizontal" /> 
         </div>
+        <SearchBox style={{ maxWidth: '400px' }}/>
         <div className="menu_rigth">
           <RightMenu mode="horizontal" />
         </div>

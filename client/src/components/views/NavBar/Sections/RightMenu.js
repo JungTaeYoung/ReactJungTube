@@ -55,7 +55,7 @@ function RightMenu(props) {
 
   if (user.userData && !user.userData.isAuth) {
     return (
-      <Menu theme={props.theme} mode={props.mode}>
+      <Menu mode={props.mode}>
         <Menu.Item key="mail">
           <a href="/login">Signin</a>
         </Menu.Item>
@@ -66,9 +66,9 @@ function RightMenu(props) {
     )
   } else {
     return (
-      <div>
-        <Switch checked={isDarkMode} onChange={toggleTheme} />
-        <Menu theme={props.theme} mode={props.mode} style={{ display: 'inline-block', backgroundColor: 'transparent' }}>
+      <>
+        {/* <Switch checked={isDarkMode} onChange={toggleTheme} /> */}
+        <Menu theme={props.theme} mode={props.mode}>
           <Menu.Item key="upload">
             <Link to="/video/upload"><VideoCameraFilled /> 비디오 업로드</Link>
           </Menu.Item>
@@ -78,9 +78,8 @@ function RightMenu(props) {
         </Menu>
         <Dropdown overlay={avatarMenu}>
           <Avatar src={UserImage}></Avatar>
-
         </Dropdown>
-      </div>
+      </>
     )
   }
 }
@@ -88,7 +87,6 @@ function RightMenu(props) {
 const avatarMenu = (
   <Menu>
     <Menu.Item><Link to="/mypage"></Link>내 영상</Menu.Item>
-
   </Menu>
 )
 

@@ -104,7 +104,7 @@ function VideoUploadPage(props) {
           message.success('성공적으로 업로드를 했습니다.')
           setTimeout(() => {
             sendEmail();
-            props.history.push('/')
+            props.history.push('/videos')
           }, 3000);
           console.log(response.data)
         } else {
