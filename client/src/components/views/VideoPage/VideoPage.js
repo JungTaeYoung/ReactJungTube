@@ -3,17 +3,19 @@ import useFetch from "../../../hoc/useFetch";
 import { FaCode } from "react-icons/fa";
 import { Card, Icon, Avatar, Col, Typography, Row, Spin } from "antd";
 import Axios from "axios";
-
+import queryString from "query-string";
 import moment from "moment"
-import { Link } from "react-router-dom";
+import { Link,withRouter } from "react-router-dom";
 
 const { Title } = Typography;
 const { Meta } = Card;
 
-function VideoPage() {
+function VideoPage({ match, location }) {
+    
+    const search_query = queryString.parse(location.search); // 검색어
     const [query, setQuery] = useState("");
     const [pageNum, setPageNum] = useState(1);
-    const { Loading, Error, List, HasMore } = useFetch(query, pageNum);
+    const { Loading, Error, List, HasMore } = useFetch(search_query.search_query, pageNum);
     const observer = useRef()
     const lastVideoElementRef = useCallback(
         (node) => {
@@ -118,4 +120,4 @@ function VideoPage() {
     );
 }
 
-export default VideoPage;
+export default withRouter(VideoPage);

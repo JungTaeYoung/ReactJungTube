@@ -13,6 +13,7 @@
     "less": "4.1.1",
     "less-loader": "10.0.0",
     "moment": "^2.24.0",
+    "query-string": "^7.0.1",
     "rc-queue-anim": "^1.8.5",
     "rc-scroll-anim": "^2.7.6",
     "rc-texty": "^0.2.0",

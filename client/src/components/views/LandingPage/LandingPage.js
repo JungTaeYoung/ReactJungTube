@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { useHistory } from "react-router-dom";
+
 import useFetch from "../../../hoc/useFetch";
 import { FaCode } from "react-icons/fa";
 import { Button } from "antd";
@@ -8,7 +9,7 @@ import QueueAnim from 'rc-queue-anim';
 import Axios from "axios";
 import './LandingPage.css'
 
-function LandingPage() {
+function LandingPage({ match, location }) {
     let history = useHistory();
     const [isVisibleText1, setisVisibleText1] = useState(false)
     const [Loadings, setLoadings] = useState([false])
@@ -107,4 +108,4 @@ function LandingPage() {
     )
 }
 
-export default LandingPage
+export default LandingPage;

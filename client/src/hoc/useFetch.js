@@ -2,7 +2,7 @@ import Axios from 'axios'
 import React, { useState, useEffect, useCallback } from 'react'
 
 //페이지 로딩
-function useFetch(query, page) {
+function useFetch(querys, page) {
     const [Loading, setLoading] = useState(true);
     const [Error, setError] = useState(false);
     const [List, setList] = useState([]);
@@ -12,6 +12,7 @@ function useFetch(query, page) {
         try {
             const variable = {
                 params: {
+                    querys,
                     page
                 }
             }
@@ -28,11 +29,11 @@ function useFetch(query, page) {
             setError(e)
         }
     },
-        [query, page],
+        [querys, page],
     )
     useEffect(() => {
-        sendQuery(query)
-    }, [query, sendQuery, page])
+        sendQuery(querys)
+    }, [querys, sendQuery, page])
 
     return { Loading, Error, List, HasMore }
 }

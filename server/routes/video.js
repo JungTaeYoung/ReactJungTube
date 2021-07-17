@@ -115,15 +115,27 @@ router.get("/getMyVideos", auth, (req, res) => {
 
 router.get("/getVideos", (req, res) => {
   // 비디오정보를 db에서 가져와 보낸다.
-  
-  Video.find()
-    .skip((req.query.page - 1) * 16)
-    .limit(16)
-    .populate('writer')
-    .exec((err, videos) => {
-      if (err) return res.status(400).send(err)
-      res.status(200).json({ success: true, videos })
-    })
+  let searchQuery = req.query.querys;
+  console.log(searchQuery)
+  if (searchQuery) {
+    Video.find({'title' : new RegExp(searchQuery, 'i')})
+      .skip((req.query.page - 1) * 16)
+      .limit(16)
+      .populate('writer')
+      .exec((err, videos) => {
+        if (err) return res.status(400).send(err)
+        res.status(200).json({ success: true, videos })
+      })
+  } else {
+    Video.find()
+      .skip((req.query.page - 1) * 16)
+      .limit(16)
+      .populate('writer')
+      .exec((err, videos) => {
+        if (err) return res.status(400).send(err)
+        res.status(200).json({ success: true, videos })
+      })
+  }
 })
 
 router.post("/getSubscriptionVideos", (req, res) => {
