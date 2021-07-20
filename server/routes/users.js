@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require("../models/User");
-
+const { Subscriber } = require("../models/Subscriber");
 const { auth } = require("../middleware/auth");
 
 //=================================
@@ -65,8 +65,21 @@ router.get("/logout", auth, (req, res) => {
         if (err) return res.json({ success: false, err });
         return res.status(200).send({
             success: true
-        });
+        }); //왜 이름만받아올까요 음여기서용?
     });
 });
 
+router.get("/myInfo", auth, (req, res) => { //여기서 서버처리부분 만들었고
+    const user_name = req.user.name;
+    const user_date = req.user.createdAt;
+
+    Subscriber.find({ 'userTo': req.body.userTo })
+        .exec((err, subscribe) => {
+            if (err) return res.status(400).send(err);
+            return res.status(200).json({ success: true, user_name, user_date, subscribeNumber: subscribe.length })
+        })
+
+})
+
 module.exports = router;
+//

@@ -10,6 +10,7 @@ const { User } = require("../models/User");
 
 router.post("/subscribeNumber", (req, res) => {
   // 비디오 저장
+  console.log('userTo', req.body.userTo )
   Subscriber.find({ 'userTo': req.body.userTo })
     .exec((err, subscribe) => {
       if (err) return res.status(400).send(err);

@@ -1,8 +1,41 @@
 .myVideoHead {
-
+    width: calc( 100% - 15px );
+    display: flex;
+}
+.myVideoHead > li:nth-child(1){
+    width: 128px;
+}
+.myVideoHead > li:nth-child(2){
+    padding-left: 10px;
+    flex: 5;
+}
+.myVideoHead > li:nth-child(3){
+    flex: 2;
+}
+.myVideoHead > li:nth-child(4){
+    flex: 2;
+}
+.myVideoHead > li:nth-child(5){
+    flex: 2;
 }
 
 .myVideoBody {
     max-height: 600px;
     overflow-y: scroll;
+}
+
+
+.myVideoBody .ant-list-items > .ant-list-item > .ant-list-item-meta {
+    padding: 10px;
+    flex: 5;
+}
+.myVideoBody .ant-list-items > .ant-list-item > .list-date {
+    flex: 2;
+}
+.myVideoBody .ant-list-items > .ant-list-item > .list-view-count {
+    flex: 2;
+}
+.myVideoBody .ant-list-items > .ant-list-item > .ant-list-item-action {
+    flex: 2;
+    margin-left: 0 !important;
 }

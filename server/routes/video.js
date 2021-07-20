@@ -47,7 +47,7 @@ router.post("/uploadfiles", (req, res) => {
 router.post("/videoUpload", (req, res) => {
   // 비디오 정보 저장
   const video = new Video(req.body);
-  console.log(video)
+  // console.log(video)
   video.save((err, doc) => {
     if (err) return res.json({ success: false, err })
     res.status(200).json({ success: true, doc })
@@ -88,9 +88,9 @@ router.get("/getMyVideos", auth, (req, res) => {
   const page = parseInt(req.query.page) || "all"
   const count = parseInt(req.query.count) || "all"
 
-  console.log(req.user)
-  console.log(page)
-  console.log(count)
+  // console.log(req.user)
+  // console.log(page)
+  // console.log(count)
 
 
   if (page == "all" && count == "all") {
@@ -107,7 +107,7 @@ router.get("/getMyVideos", auth, (req, res) => {
       .populate('writer')
       .exec((err, videos) => {
         if (err) return res.status(400).send(err)
-        console.log(videos)
+        // console.log(videos)
         res.status(200).json({ success: true, videos })
       })
   }

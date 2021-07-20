@@ -34,15 +34,7 @@ function LandingPage({ match, location }) {
             history.push("/videos")
         }, 2000);
     };
-    const animType = {
-        queue: 'bottom',
-        one: { x: '-=30', opacity: 0, type: 'from' }
-    };
-    useEffect(() => {
-        // setTimeout(() => {
-        //     setisVisibleText2(true)
-        // }, 2000)
-    }, [])
+
     return (
         <div>
             <div className="fullBox">
@@ -89,13 +81,11 @@ function LandingPage({ match, location }) {
                                 type="bottom"
                                 delay={1000}
                                 duration={300}
-                                // className={`${props.className}-text`}
                                 key="text"
                                 leaveReverse
                                 ease={['easeOutCubic', 'easeInCubic']}
-                            // id={`${props.id}-textWrapper`}
                             >
-                                <Button  loading={Loadings[0]} onClick={() => enterLoading(0)}>
+                                <Button loading={Loadings[0]} onClick={() => enterLoading(0)}>
                                     Click me!
                                 </Button>
                             </QueueAnim> : null

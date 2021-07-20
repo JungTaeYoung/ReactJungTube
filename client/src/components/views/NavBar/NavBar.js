@@ -11,7 +11,7 @@ import './Sections/Navbar.css';
 
 function NavBar() {
   const [visible, setVisible] = useState(false)
-
+  const user = useSelector(state => state.user)
   const isDrak = useSelector(state => state.preferences.darkThemeEnabled)
   const dispatch = useDispatch();
   useEffect(() => {
@@ -35,10 +35,11 @@ function NavBar() {
       </div>
       <div className="menu__container">
         <div className="menu_left">
-          <LeftMenu mode="horizontal" /> 
+          <LeftMenu mode="horizontal" />
         </div>
-        <SearchBox style={{ maxWidth: '400px' }}/>
-        <div className="menu_rigth">
+        <SearchBox style={{ maxWidth: '400px' }} />
+
+        <div className={'menu_rigth ' + (user.userData && user.userData.isAuth && 'auth')} >
           <RightMenu mode="horizontal" />
         </div>
 
@@ -64,7 +65,7 @@ function NavBar() {
           <RightMenu mode="inline" />
         </Drawer>
       </div>
-    </nav>
+    </nav >
   )
 }
 

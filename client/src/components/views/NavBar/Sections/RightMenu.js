@@ -64,7 +64,7 @@ function RightMenu(props) {
         </Menu.Item>
       </Menu>
     )
-  } else {
+  } else if((user.userData && user.userData.isAuth)) {
     return (
       <>
         {/* <Switch checked={isDarkMode} onChange={toggleTheme} /> */}
@@ -80,6 +80,10 @@ function RightMenu(props) {
           <Avatar src={UserImage}></Avatar>
         </Dropdown>
       </>
+    )
+  } else {
+    return(
+      <span>로딩중</span>
     )
   }
 }

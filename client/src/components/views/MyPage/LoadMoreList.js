@@ -100,7 +100,8 @@ class LoadMoreList extends React.Component {
                                 title={<a href="https://ant.design">{item.title}</a>}
                                 description={item.description}
                             />
-                            <div>content</div>
+                            <div className="list-date">2021년 07월 18일</div>
+                            <div className="list-view-count">조회: 182</div>
                         </Skeleton>
                     </List.Item>
                 )}

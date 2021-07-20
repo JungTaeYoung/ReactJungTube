@@ -4,6 +4,7 @@ import {
     REGISTER_USER,
     AUTH_USER,
     LOGOUT_USER,
+    MY_INFO
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -43,6 +44,16 @@ export function logoutUser(){
 
     return {
         type: LOGOUT_USER,
+        payload: request
+    }
+}
+
+export function myInfo(){ // 
+    const request = axios.get(`${USER_SERVER}/myinfo`)
+    .then(response => response.data);
+
+    return {
+        type: MY_INFO,
         payload: request
     }
 }
