@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Axios from "axios";
-
+import * as config from '../../../../config/hostConfig';
+const HOST = config.REACT_APP_WWW_HOST
 function SideVideo() {
 
     const [sideVideos, setsideVideos] = useState([])
@@ -26,7 +27,7 @@ function SideVideo() {
         return <div key={index} style={{ display: 'flex', marginBottom: '1rem', padding: '0 2rem' }}>
             <div style={{ width: '40%', marginRight: '1rem' }}>
                 <a href>
-                    <img style={{ width: '100%', height: '100%' }} src={`http://localhost:5000/${video.thumbnail}`} alt />
+                    <img style={{ width: '100%', height: '100%' }} src={`${HOST}${video.thumbnail}`} alt />
                 </a>
             </div>
 

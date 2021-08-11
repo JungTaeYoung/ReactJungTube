@@ -72,8 +72,8 @@ router.get("/logout", auth, (req, res) => {
 router.get("/myInfo", auth, (req, res) => { //여기서 서버처리부분 만들었고
     const user_name = req.user.name;
     const user_date = req.user.createdAt;
-
-    Subscriber.find({ 'userTo': req.body.userTo })
+    console.log("req.user")
+    Subscriber.find({ 'userTo': req.user._id })
         .exec((err, subscribe) => {
             if (err) return res.status(400).send(err);
             return res.status(200).json({ success: true, user_name, user_date, subscribeNumber: subscribe.length })

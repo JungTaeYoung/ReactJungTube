@@ -6,6 +6,8 @@ import Subscribe from './Sections/Subscribe'
 import Comment from './Sections/Comment'
 import LikeDislikes from './Sections/LikeDislikes'
 import Video from './Sections/Video'
+import * as config from '../../../config/hostConfig';
+const HOST = config.REACT_APP_WWW_HOST
 
 function VideoDetailPage(props) {
 
@@ -58,7 +60,7 @@ function VideoDetailPage(props) {
                         <Video 
                             
                             style={{ width: '100%' }}
-                            src={`http://localhost:5000/${VideoDetail.filepath}`}
+                            src={`${HOST}${VideoDetail.filepath}`}
                             controls={false}
                         />
                         <List.Item

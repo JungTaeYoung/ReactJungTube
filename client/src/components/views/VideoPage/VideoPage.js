@@ -6,7 +6,8 @@ import Axios from "axios";
 import queryString from "query-string";
 import moment from "moment"
 import { Link,withRouter } from "react-router-dom";
-
+import * as config from '../../../config/hostConfig';
+const HOST = config.REACT_APP_WWW_HOST;
 const { Title } = Typography;
 const { Meta } = Card;
 
@@ -57,7 +58,7 @@ function VideoPage({ match, location }) {
                 <div style={{ position: "relative" }}>
                     <Link to={`/video/${video._id}`}>
                         <div style={{ position: 'relative' }}>
-                            <img style={{ width: '100%' }} src={`http://localhost:5000/${video.thumbnail}`} />
+                            <img style={{ width: '100%' }} src={`${HOST}${video.thumbnail}`} />
                             <div className="duration">
                                 <span>{minutes} : {seconds}</span>
                             </div>
@@ -80,7 +81,7 @@ function VideoPage({ match, location }) {
                 <div style={{ position: "relative" }}>
                     <Link to={`/video/${video._id}`}>
                         <div style={{ position: 'relative' }}>
-                            <img style={{ width: '100%' }} src={`http://localhost:5000/${video.thumbnail}`} />
+                            <img style={{ width: '100%' }} src={`${HOST}${video.thumbnail}`} />
                             <div className="duration">
                                 <span>{minutes} : {seconds}</span>
                             </div>
@@ -112,7 +113,7 @@ function VideoPage({ match, location }) {
             <div style={{ width: "85%", margin: "3rem auto" }}>
                 <Row gutter={[16, 48]}>
                     {renderCards}
-                    {Loading && <Spin />}
+                    {Loading && <div className="spin-box"><Spin /></div>} 
                     {Error && <Spin />}
                 </Row>
             </div>

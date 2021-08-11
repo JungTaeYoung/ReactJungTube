@@ -2,12 +2,16 @@ import 'react-app-polyfill/ie9';
 import 'react-app-polyfill/ie11';
 import 'core-js';
 
+import * as config from './config/hostConfig';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom";
+
+
 
 import Reducer from './_reducers';
 import { Provider } from 'react-redux';
@@ -16,6 +20,8 @@ import promiseMiddleware from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
 
 import { ThemeSwitcherProvider } from "react-css-theme-switcher";
+
+// const HOST = config.REACT_APP_WWW_HOST;
 
 const themes = {
     dark: ``,

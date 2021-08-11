@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux'
 import * as emailjs from 'emailjs-com';
 import { PlusOutlined } from '@ant-design/icons';
 
+import * as config from '../../../config/hostConfig';
+const HOST = config.REACT_APP_WWW_HOST
 const { TextArea } = Input;
 const { Title } = Typography;
 
@@ -164,7 +166,7 @@ function VideoUploadPage(props) {
           {ThumbnailPath && (
             <div>
               <img
-                src={`http://localhost:5000/${ThumbnailPath}`}
+                src={`${HOST}${ThumbnailPath}`}
                 alt="thumbnail"
               />
             </div>

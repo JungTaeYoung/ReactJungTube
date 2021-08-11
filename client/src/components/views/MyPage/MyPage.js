@@ -112,8 +112,8 @@ function MyPage() {
                             <hr />
                             <br />
                             <p>구독자 : {}명</p>
-                            <p>회원가입 날짜 : 2021년 5월 8일</p>
-                            <p>내 영상 : {user.myInfo && user.myInfo.user_name}개</p>
+                            <p>회원가입 날짜 : {moment(myInfo.user_date).format("YYYY년 MM월 DD일")}</p>
+                            <p>내 영상 : {user.myInfo && user.myInfo.subscribeNumber}개</p>
                         </CardBox>
                     </Col>
                     <Col lg={8}>

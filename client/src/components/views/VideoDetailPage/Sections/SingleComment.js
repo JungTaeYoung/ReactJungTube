@@ -51,7 +51,7 @@ function SingleComment(props) {
                 avatar={<Avatar src={props.comment.writer.image} alt />}
                 content={<p>{props.comment.content}</p>}
             />
-            {OpenReply && <form style={{ display: 'flex' }} onSubmit={onSubmit}>
+            {/* {OpenReply && <form style={{ display: 'flex' }} onSubmit={onSubmit}>
                 <textarea
                     style={{ width: '100%', borderRadius: '5px' }}
                     onChange={onHandleChange}
@@ -60,7 +60,22 @@ function SingleComment(props) {
                 />
                 <br />
                 <button style={{ width: '20%', height: '52px' }} onClick={onSubmit}>Submit</button>
-            </form>}
+            </form>} */}
+
+            {OpenReply && user.userData && user.userData.isAuth && (<form style={{ display: 'flex' }} onSubmit={onSubmit}>
+                <textarea
+                    style={{ width: '100%', borderRadius: '5px' }}
+                    onChange={onHandleChange}
+                    value={CommentValue}
+                    placeholder="코멘트를 작성해 주세요"
+                />
+                <br />
+                <button style={{ width: '20%', height: '52px' }} onClick={onSubmit}>Submit</button>
+            </form>)}
+            {OpenReply && user.userData && !user.userData.isAuth && (<form style={{ display: 'flex' }} onSubmit={onSubmit}>
+                <p>댓글 작성은 로그인 후 이용 가능합니다.</p>
+            </form>)}
+
 
         </div>
     )

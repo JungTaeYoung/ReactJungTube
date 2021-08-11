@@ -2,9 +2,12 @@
 import React, {useEffect, useState} from "react";
 import { FaCode } from "react-icons/fa";
 import { Card, Icon, Avatar, Col, Typography, Row } from "antd";
+import * as config from '../../../config/hostConfig';
 import Axios from "axios";
 
 import moment from "moment"
+const HOST = config.REACT_APP_WWW_HOST
+
 
 const {Title} = Typography;
 const {Meta} = Card;
@@ -40,7 +43,7 @@ function SubscriptionPage() {
             <div style={{ position: "relative" }}>
                 <a href={`/video/${video._id}`}>
                     <div style={{position: 'relative'}}>
-                        <img style={{ width: '100%' }} src={`http://localhost:5000/${video.thumbnail}`} />
+                        <img style={{ width: '100%' }} src={`${HOST}${video.thumbnail}`} />
                         <div className="duration">
                             <span>{minutes} : {seconds}</span>
                         </div>

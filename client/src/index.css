@@ -68,3 +68,15 @@ input.error {
 .mainTopText {
   text-align: center;
 }
+
+
+.spin-box {
+  width: 100%;
+
+}
+.spin-box .ant-spin.ant-spin-spinning {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+

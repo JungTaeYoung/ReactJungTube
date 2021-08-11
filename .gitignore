@@ -1,6 +1,9 @@
 /node_modules
 /build
 /uploads
+/server/client
+/client/build
+
 
 dev.js
 

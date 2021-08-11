@@ -36,7 +36,7 @@ const userSchema = mongoose.Schema({
     active: {
         type: Boolean
     }
-})
+}, {timestamps: true})
 
 
 userSchema.pre('save', function( next ) {

@@ -55,8 +55,7 @@ function Comment(props) {
 
 
             {/* Root Comment Form */}
-
-            <form style={{ display: 'flex' }} onSubmit={onSubmit}>
+            {user.userData && user.userData.isAuth && (<form style={{ display: 'flex' }} onSubmit={onSubmit}>
                 <textarea
                     style={{ width: '100%', borderRadius: '5px' }}
                     onChange={handleClick}
@@ -64,8 +63,13 @@ function Comment(props) {
                     placeholder="코멘트를 작성해 주세요"
                 />
                 <br />
-                <button style={{ width: '20%', height: '52px' }} onClick>Submit</button>
-            </form>
+                <button style={{ width: '20%', height: '52px' }} onClick={onSubmit}>Submit</button>
+            </form>)}
+            {user.userData && !user.userData.isAuth && (<form style={{ display: 'flex' }} onSubmit={onSubmit}>
+                <p>댓글 작성은 로그인 후 이용 가능합니다.</p>
+            </form>)}
+
+
 
         </div>
     )

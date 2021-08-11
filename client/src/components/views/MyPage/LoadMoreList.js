@@ -2,7 +2,8 @@ import React from "react";
 import { List, Avatar, Button, Skeleton } from 'antd';
 
 import reqwest from 'reqwest';
-
+import * as config from '../../../config/hostConfig';
+const HOST = config.REACT_APP_WWW_HOST;
 // const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat&noinfo`;
 
 let page = 1;
@@ -94,7 +95,7 @@ class LoadMoreList extends React.Component {
                         actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>, <a key="list-loadmore-more">more</a>]}
                     >
                         <Skeleton avatar title={false} loading={item.loading} active>
-                            <img style={{ height: '80px' }} src={`http://localhost:5000/${item.thumbnail}`} />
+                            <img style={{ height: '80px' }} src={`${HOST}${item.thumbnail}`} />
                             <List.Item.Meta
 
                                 title={<a href="https://ant.design">{item.title}</a>}
